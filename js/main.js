@@ -1,3 +1,4 @@
+'use strict';
 const searchEl = document.querySelector('.search');
 const searchInputEl = searchEl.querySelector('input');
 
@@ -46,4 +47,23 @@ new Swiper('.notice-line .swiper-container', {
   direction: 'vertical',
   autoplay: true,
   loop: true,
+});
+
+new Swiper('.promotion .swiper-container', {
+  slidesPerView: 3,
+  spaceBetween: 10,
+  centeredSlides: true,
+  // initialSlide: 1,
+  loop: true,
+  autoplay: {
+    delay: 2500,
+  },
+  pagination: {
+    el: '.promotion .swiper-pagination',
+    clickable: true,
+    navigation: {
+      prevEl: '.promotion .swiper-prev',
+      nextEl: '.promotion .swiper-next',
+    },
+  },
 });
