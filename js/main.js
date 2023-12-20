@@ -17,6 +17,7 @@ searchInputEl.addEventListener('blur', function () {
 });
 
 const badgeEl = document.querySelector('header .badges');
+const toTopEl = document.querySelector('#to-top');
 
 window.addEventListener(
   'scroll',
@@ -26,14 +27,26 @@ window.addEventListener(
         opacity: 0,
         display: 'none',
       });
+      gsap.to(toTopEl, 0.2, {
+        x: 0,
+      });
     } else {
       gsap.to(badgeEl, 0.6, {
         opacity: 1,
         display: 'block',
       });
+      gsap.to(toTopEl, 0.2, {
+        x: 100,
+      });
     }
   }, 300)
 );
+
+toTopEl.addEventListener('click', function () {
+  gsap.to(window, 0.7, {
+    scrollTo: 0,
+  });
+});
 
 const fadeEls = document.querySelectorAll('.visual .fade-in');
 fadeEls.forEach(function (fadeEl, index) {
@@ -65,6 +78,17 @@ new Swiper('.promotion .swiper-container', {
       prevEl: '.promotion .swiper-prev',
       nextEl: '.promotion .swiper-next',
     },
+  },
+});
+
+new Swiper('.awards .swiper-container', {
+  autoplay: true,
+  loof: true,
+  spaceBetween: 30,
+  slidesPerView: 5,
+  navigation: {
+    prevEl: '.awards .swiper-prev',
+    nextEl: '.awards .swiper-next',
   },
 });
 
@@ -107,3 +131,6 @@ spyELs.forEach(function (spyEl) {
     .setClassToggle(spyEl, 'show')
     .addTo(new ScrollMagic.Controller());
 });
+
+const thisYear = document.querySelector('.this-year');
+thisYear.textContent = new Date().getFullYear();
